@@ -29,7 +29,17 @@ pip install PySide6 uiautomation requests
 python main.py
 ```
 
-修改代码后想重新打包，双击 `build.bat` 即可。
+仓库已把橘猫五状态素材以 base64 分片形式内嵌在 `app/embedded/` 中，**无需额外下载任何图片或素材**，clone 后直接运行即可；首次启动会自动把内嵌素材解码到用户可写目录。
+
+修改代码后想重新打包，双击 `build.bat` 即可（打包脚本会优先读取本地 `assets/` 高清原图，没有该目录时程序仍可使用内嵌素材正常运行）。
+
+## 素材与内嵌机制
+
+为保证仓库 clone 即可运行、不依赖外部二进制素材，五状态图片统一缩放为 128px 后转成 base64，再拆成多个短小的 Python 分片存放在 `app/embedded/parts/`，命名规则为 `状态名_序号.py`，每个分片只含一个字符串 `P`。
+
+- `app/embedded/__init__.py` 中的 `MANIFEST` 记录每个状态的分片数量，启动时按序号动态导入并拼接，得到完整 base64
+- `app/asset_loader.py` 优先使用 `assets/` 目录下的高清原图；若缺失，则把内嵌 base64 解码写入可写目录后使用
+- 因此无论是源码运行还是打包，都不会出现找不到素材的问题
 
 ## 怎么和它互动
 
@@ -90,18 +100,26 @@ python main.py
 ## 目录结构
 
 ```
-desktop_pet/
-├── main.py                # 程序入口
-├── build.bat              # 一键打包脚本
-├── config.json            # 你的全部配置（运行后自动生成）
-├── assets/                # 橘猫五状态图片
+orange-cat-pet/
+├── main.py                  # 程序入口
+├── build.bat                # 一键打包脚本
+├── README.md                # 使用说明
 ├── app/
-│   ├── config.py          # 配置读写
-│   ├── pet_window.py      # 桌宠窗口、动画、托盘、菜单
-│   ├── chat_window.py     # 和宠物聊天窗口
-│   ├── settings_dialog.py # 设置面板
-│   ├── reply_engine.py    # 规则与 AI 回复引擎
-│   ├── monitor.py         # 消息监听线程
-│   └── worker.py          # 异步任务
-└── platforms/             # 微信、QQ 平台适配
+│   ├── config.py            # 配置读写
+│   ├── asset_loader.py      # 素材加载（优先 assets，缺失则解码内嵌）
+│   ├── pet_window.py        # 桌宠窗口、动画、托盘、菜单
+│   ├── chat_window.py       # 和宠物聊天窗口
+│   ├── settings_dialog.py   # 设置面板
+│   ├── reply_engine.py     # 规则与 AI 回复引擎
+│   ├── monitor.py           # 消息监听线程
+│   ├── worker.py            # 异步任务
+│   └── embedded/            # 内嵌素材（base64 分片）
+│       ├── __init__.py      # MANIFEST 与分片拼接逻辑
+│       └── parts/           # 各状态分片 <name>_<i>.py
+└── platforms/               # 微信、QQ 平台适配
+    ├── base.py              # 通用窗口查找与模拟输入
+    ├── wechat.py            # 微信适配
+    └── qq.py                # QQ 适配
 ```
+
+运行后还会自动生成 `config.json` 保存你的全部配置（已在 `.gitignore` 中忽略，不会提交）。
