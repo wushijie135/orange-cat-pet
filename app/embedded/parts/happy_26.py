@@ -1,0 +1,19 @@
+# 分片 happy part 26
+P = (
+    "BELNCEVl4MQQq+95hKVt7YB32pji8+EWLfK7Xsfq6sJqXIIrFI"
+    "KNS0mn0hRnMyxpDs1VBQMl9Y/wStMU9bzfUFnDkPwYJ59GOg7m"
+    "TBSpCLRAHUpdK53dQ/QPjPz+tG4crFRfzoeK5q53xONZ4vwN+B"
+    "vA1kix/urJ9GPHPuxfX7RdYboy4Uppf3C4/9G127agaH4sy5No"
+    "iRo/amgj4ZWrkdIlf7wTp68Prr8WW9dR9QxCSoqJOBSL6PEk9Y"
+    "2NZKITsEaWbq6Xu5uTCyo+yhXKrisRroOjj2JN9ZVsYJTz2gFV"
+    "Q2gBjh/rcWcda3sl+3E+XFbihY54PNsR57ELX9sGao+q3h6//Z"
+    "qN4XAbEoGZNwg0hFj7tbsAiRGbwjp6FKTEGR3DCTUjIxFkXS3S"
+    "LKL29CDbl5GKRWloaPDEKYpSiu1rnkpYeo+FUkrcYg4cG3PkEG"
+    "4x4xVilhNGmoYUAil8DJwdYTSa7Hh7PPNxZXps/lz24oUd4NiO"
+    "/MVft38gLakiBVgFG+lbguKvxUwlyE5O4IaaccNh3FAIYnGc2g"
+    "BOS8Rb1+vrkStW00H+8kxVr11BSe5ST/d5aLwR2NomrT1IcfJ/C"
+    "wD6cgj4XrPI2h94MYM9myQ/38a8DRyha7lOV7qP5UFGn0P+XUx"
+    "mjb62mrLNdvrjxylaEphFcsRlR144+MoBrWbihZqTPDz29iEQS"
+    "MaPjxqZhzRdw2tuIJxJMDQ+y6avXUY70CaEhiwZ2OoadHMGa6M"
+    "ROjSCtAtIxkY6EUgbQMYqYmQz56TiFVIrRpMHBnoljO8dnflLp"
+)
