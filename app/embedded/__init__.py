@@ -1,6 +1,6 @@
 from . import parts
 
-MANIFEST = {'idle': 8, 'blink': 7, 'talk': 8, 'happy': 8, 'sleep': 7}
+MANIFEST = {'idle': 8, 'blink': 7, 'talk': 8, 'happy': 29, 'sleep': 28}
 
 ASSETS_B64 = {}
 for _name, _count in MANIFEST.items():
