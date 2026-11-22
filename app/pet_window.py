@@ -10,7 +10,7 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from .config import app_root
+from .asset_loader import asset_path
 
 
 class SpeechBubble(QWidget):
@@ -81,8 +81,7 @@ class PetWindow(QWidget):
         size = self._pet_size()
         self._pixmaps.clear()
         for name in ("idle", "blink", "talk", "happy", "sleep"):
-            path = app_root() / "assets" / f"{name}.png"
-            pm = QPixmap(str(path))
+            pm = QPixmap(str(asset_path(name)))
             self._pixmaps[name] = pm.scaled(size, size, Qt.KeepAspectRatio, Qt.SmoothTransformation)
 
     def apply_appearance(self):
@@ -201,7 +200,7 @@ class PetWindow(QWidget):
         return menu
 
     def _build_tray(self):
-        icon = QIcon(str(app_root() / "assets" / "idle.png"))
+        icon = QIcon(str(asset_path("idle")))
         tray = QSystemTrayIcon(icon, self)
         tray.setToolTip(self.config.get("pet_name", default="橘橘"))
         tray.activated.connect(self._tray_activated)
