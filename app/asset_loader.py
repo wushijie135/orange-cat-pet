@@ -1,7 +1,7 @@
 import base64
 
 from .config import app_root, writable_root
-from .embedded_assets import ASSETS_B64
+from .embedded import ASSETS_B64
 
 NAMES = ("idle", "blink", "talk", "happy", "sleep")
 _assets_dir = None
