@@ -1,9 +1,11 @@
-from . import idle, blink, talk, happy, sleep
+from . import parts
 
-ASSETS_B64 = {
-    "idle": idle.B64,
-    "blink": blink.B64,
-    "talk": talk.B64,
-    "happy": happy.B64,
-    "sleep": sleep.B64,
-}
+MANIFEST = {'idle': 8, 'blink': 7, 'talk': 8, 'happy': 8, 'sleep': 7}
+
+ASSETS_B64 = {}
+for _name, _count in MANIFEST.items():
+    _chunks = []
+    for _i in range(_count):
+        _mod = __import__(f"app.embedded.parts.{_name}_{_i}", fromlist=["P"])
+        _chunks.append(_mod.P)
+    ASSETS_B64[_name] = "".join(_chunks)
